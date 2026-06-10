@@ -4,13 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Workday UX · Product Analysis</title>
-  <span>Self-initiated case study · 2026</span>
-  <span>Lâm Tú Quyên</span>
-<span>
-  <a href="https://www.linkedin.com/in/quyen-lam318" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">LinkedIn Profile</a>
-  ·
-  <a href="mailto:lamtquyen03@gmail.com" style="color:inherit;text-decoration:underline">lamtquyen03@gmail.com</a>
-</span>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Be+Vietnam+Pro:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -68,6 +61,14 @@
   .navlinks a{text-decoration:none;color:var(--ink-soft);transition:.2s}
   .navlinks a:hover{color:var(--flame-d)}
   @media(max-width:820px){.navlinks{display:none}}
+
+  /* language toggle */
+  #langToggle{display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--line);border-radius:30px;padding:5px 13px;cursor:pointer;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--ink-soft);transition:.2s}
+  #langToggle:hover{border-color:var(--flame-d)}
+  #langToggle .lg{transition:.2s}
+  #langToggle .lg-sep{color:var(--line)}
+  #langToggle.en .lg-en{color:var(--flame-d)} #langToggle.en .lg-vi{color:var(--ink-soft);opacity:.5}
+  #langToggle.vi .lg-vi{color:var(--flame-d)} #langToggle.vi .lg-en{color:var(--ink-soft);opacity:.5}
 
   /* HERO */
   .hero{background:var(--navy);color:#fff;padding:140px 0 76px;position:relative;overflow:hidden}
@@ -244,6 +245,9 @@
 
 <nav id="nav"><div class="navin">
   <div class="brand"><span class="d"></span> Workday UX · Product Analytics</div>
+  <button id="langToggle" aria-label="Switch language" title="Switch language">
+    <span class="lg lg-en">EN</span><span class="lg-sep">/</span><span class="lg lg-vi">VI</span>
+  </button>
 </div></nav>
 
 <!-- vertical scroll-spy rail -->
@@ -268,12 +272,7 @@
     <div class="hero-grid">
       <div>
         <div class="hero-eyebrow">Product Analysis · UX Teardown</div>
-        <h1 style="line-height: 1.2">
-  <h1 style="text-align: center; line-height: 1.3;">
-  Job application flow khiến<br>
-  <span class="or" style="color: #ff5722; display: block;">hơn 60%</span>
-  ứng viên rời đi.
-</h1>
+        <h1 data-i18n="hero_h1" style="line-height:1.2">Job application flow khiến <span class="or" style="color:#ff5722">hơn 60%</span> ứng viên rời đi.</h1>
         <p class="hero-sub">Phân tích luồng ứng tuyển của Workday: vì sao ATS phổ biến nhất Fortune 500 lại có drop-off cao nhất, và hướng redesign đặt candidate làm trung tâm.</p>
         <div class="hero-meta">
           <span class="chip">Self-initiated case study</span>
@@ -309,11 +308,11 @@
 <section id="context" class="bg-mist">
   <div class="wrap">
     <span class="eyebrow reveal">Context</span>
-    <h2 class="sec reveal"><span class="dot"></span><span>Một <span class="or">URL Workday</span> = một rào cản ứng tuyển</span></h2>
+    <h2 class="sec reveal"><span class="dot"></span><span data-i18n="ctx_h2">Một <span class="or">URL Workday</span> = một rào cản ứng tuyển</span></h2>
     <div class="two">
       <div class="reveal">
-        <p class="lead">Mỗi công ty là một <b style="color:var(--ink)">account riêng</b>. Mỗi account buộc ứng viên nhập lại toàn bộ thông tin vốn đã có sẵn trong resume.</p>
-        <p style="margin-top:16px;color:var(--ink-soft)">Phản hồi tiêu cực kéo dài nhiều năm trên Quora &amp; Reddit, nhưng luồng gần như không đổi. <b style="color:var(--ink)">Pain point rõ ràng nhưng iteration bằng 0</b> chính là tín hiệu product đáng phân tích.</p>
+        <p class="lead" data-i18n="ctx_lead">Mỗi công ty là một <b style="color:var(--ink)">account riêng</b>. Mỗi account buộc ứng viên nhập lại toàn bộ thông tin vốn đã có sẵn trong resume.</p>
+        <p style="margin-top:16px;color:var(--ink-soft)" data-i18n="ctx_p2">Phản hồi tiêu cực kéo dài nhiều năm trên Quora &amp; Reddit, nhưng luồng gần như không đổi. <b style="color:var(--ink)">Pain point rõ ràng nhưng iteration bằng 0</b> chính là tín hiệu product đáng phân tích.</p>
       </div>
       <div class="quotes reveal">
         <div class="qcard"><div class="who">r/recruitinghell <span class="s">· Reddit</span></div><p class="big">"Hàng trăm tài khoản Workday phải tạo chỉ để apply việc."</p></div>
@@ -329,8 +328,8 @@
 <section id="problem">
   <div class="wrap">
     <span class="eyebrow reveal">01 · Problem Framing</span>
-    <h2 class="sec reveal"><span class="dot"></span><span>Tối ưu cho <span class="or">recruiter data</span>, không phải candidate time</span></h2>
-    <p class="lead reveal" style="margin-bottom:34px">Là một <span class="hl-b">ATS</span>, Workday tối ưu việc thu data sạch cho HR. Nhưng candidate và recruiter đều là user, và thiết kế hiện tại bắt candidate gánh chi phí cho mục tiêu của recruiter.</p>
+    <h2 class="sec reveal"><span class="dot"></span><span data-i18n="prob_h2">Tối ưu cho <span class="or">recruiter data</span>, không phải candidate time</span></h2>
+    <p class="lead reveal" style="margin-bottom:34px" data-i18n="prob_lead">Là một <span class="hl-b">ATS</span>, Workday tối ưu việc thu data sạch cho HR. Nhưng candidate và recruiter đều là user, và thiết kế hiện tại bắt candidate gánh chi phí cho mục tiêu của recruiter.</p>
     <div class="two" style="gap:40px;align-items:center">
       <div class="frame reveal" style="grid-template-columns:1fr">
         <div class="fbox cand">
@@ -366,7 +365,7 @@
         </div>
       </div>
     </div>
-    <p class="kicker reveal">Bước <b>[Create Account]</b> là điểm rò rỉ lớn nhất của funnel: phần lớn ứng viên bỏ ngang ngay tại đây.</p>
+    <p class="kicker reveal" data-i18n="prob_kick">Bước <b>[Create Account]</b> là điểm rò rỉ lớn nhất của funnel: phần lớn ứng viên bỏ ngang ngay tại đây.</p>
   </div>
 </section>
 
@@ -374,7 +373,7 @@
 <section id="why" class="bg-mist">
   <div class="wrap">
     <span class="eyebrow reveal">02 · Root Cause</span>
-    <h2 class="sec reveal"><span class="dot"></span><span>Phàn nàn cả thập kỷ, <span class="or">vì sao không sửa?</span></span></h2>
+    <h2 class="sec reveal"><span class="dot"></span><span data-i18n="why_h2">Phàn nàn cả thập kỷ, <span class="or">vì sao không sửa?</span></span></h2>
     <div class="reveal" style="margin-top:8px">
       <div class="why-step"><div class="why-num">1</div><div><div class="q">Vì sao luồng apply nhiều friction?</div><div class="a">Admin-first: thu tối đa data, account trước mọi thứ.</div></div></div>
       <div class="why-step"><div class="why-num">2</div><div><div class="q">Vì sao admin-first dù candidate ghét?</div><div class="a">Khách trả tiền là HR/doanh nghiệp, không phải candidate.</div></div></div>
@@ -382,7 +381,7 @@
       <div class="why-step"><div class="why-num">4</div><div><div class="q">Vì sao candidate không "tẩy chay"?</div><div class="a">65% Fortune 500 dùng Workday, nên từ chối ứng tuyển đồng nghĩa ứng viên tự mất cơ hội tốt nhất.</div></div></div>
       <div class="why-step"><div class="why-num">5</div><div><div class="q">Vì sao mọi thứ không thay đổi?</div><div class="a">Lock-in + switching cost ở 11.000+ tổ chức: rủi ro bảo mật, versioning, hiệu năng.</div></div></div>
     </div>
-    <p class="kicker reveal">Kết luận: <b>vấn đề business-model khoác áo UX.</b> Cải thiện User Experience chỉ lên roadmap khi nó gắn được với một business outcome đo lường được.</p>
+    <p class="kicker reveal" data-i18n="why_kick">Kết luận: <b>vấn đề business-model khoác áo UX.</b> Cải thiện User Experience chỉ lên roadmap khi nó gắn được với một business outcome đo lường được.</p>
   </div>
 </section>
 
@@ -390,8 +389,8 @@
 <section id="impact">
   <div class="wrap">
     <span class="eyebrow reveal">03 · Business Impact</span>
-<h2 class="sec reveal" style="font-size:clamp(22px,3vw,34px)"><span class="dot"></span><span><span style="color:var(--flame-d)">Friction</span> rút cạn <span style="color:var(--flame-d)">funnel</span>, ảnh hưởng <span style="color:var(--flame-d)">Employer Branding</span></span></h2>
- <p class="lead reveal" style="margin-bottom:30px">Friction trong luồng apply khiến phần lớn ứng viên rời đi trước bước đánh giá của recruiter.</p>
+<h2 class="sec reveal" style="font-size:clamp(22px,3vw,34px)"><span class="dot"></span><span data-i18n="imp_h2"><span style="color:var(--flame-d)">Friction</span> rút cạn <span style="color:var(--flame-d)">funnel</span>, ảnh hưởng <span style="color:var(--flame-d)">Employer Branding</span></span></h2>
+ <p class="lead reveal" style="margin-bottom:30px" data-i18n="imp_lead">Friction trong luồng apply khiến phần lớn ứng viên rời đi trước bước đánh giá của recruiter.</p>
     <div class="two" style="align-items:start">
       <div class="reveal">
         <div class="funnel">
@@ -417,8 +416,8 @@
 <section id="solution" class="bg-mist">
   <div class="wrap">
     <span class="eyebrow reveal">04 · Proposed Solution</span>
-    <h2 class="sec reveal"><span class="dot"></span><span>Candidate experience như <span class="or">đòn bẩy tăng trưởng</span></span></h2>
-    <p class="lead reveal" style="margin-bottom:30px">Mỗi giải pháp vừa giảm drop-off, vừa giữ chất lượng data của recruiter, đó là điều kiện để fix sống sót qua business case.</p>
+    <h2 class="sec reveal"><span class="dot"></span><span data-i18n="sol_h2">Candidate experience như <span class="or">đòn bẩy tăng trưởng</span></span></h2>
+    <p class="lead reveal" style="margin-bottom:30px" data-i18n="sol_lead">Mỗi giải pháp vừa giảm drop-off, vừa giữ chất lượng data của recruiter, đó là điều kiện để fix sống sót qua business case.</p>
     <div class="solgrid">
       <div class="sol reveal"><div class="top"><span class="ic">🪪</span><span class="n">S1</span></div><h4>Profile trung tâm + API</h4><p>Một profile, chia sẻ theo từng công ty. Recruiter vẫn nhận data có cấu trúc.</p><span class="pat">Single source of truth</span></div>
       <div class="sol reveal"><div class="top"><span class="ic">✨</span><span class="n">S2</span></div><h4>Autofill thật sự</h4><p>Parse resume / LinkedIn một lần. Chỉ hỏi cái còn thiếu.</p><span class="pat">Progressive disclosure</span></div>
@@ -434,8 +433,8 @@
 <section id="prioritization">
   <div class="wrap">
     <span class="eyebrow reveal">04 · Prioritization</span>
-    <h2 class="sec reveal"><span class="dot"></span><span>Impact vs Effort: <span class="or">bắt đầu từ đâu</span></span></h2>
-    <p class="lead reveal" style="margin-bottom:28px">Impact = mức giảm drop-off. Effort tính cả độ khó ở scale doanh nghiệp.</p>
+    <h2 class="sec reveal"><span class="dot"></span><span data-i18n="pri_h2">Impact vs Effort: <span class="or">bắt đầu từ đâu</span></span></h2>
+    <p class="lead reveal" style="margin-bottom:28px" data-i18n="pri_lead">Impact = mức giảm drop-off. Effort tính cả độ khó ở scale doanh nghiệp.</p>
     <div class="matrix-shell reveal">
       <div class="matrix">
         <div class="qdiv" style="left:50%;top:0;bottom:0;width:2px"></div>
@@ -466,7 +465,7 @@
 <section id="metrics" class="bg-mist">
   <div class="wrap">
     <span class="eyebrow reveal">05 · Success Metrics</span>
-    <h2 class="sec reveal"><span class="dot"></span><span>Mọi đề xuất cần một thước đo </span></h2>
+    <h2 class="sec reveal"><span class="dot"></span><span data-i18n="met_h2">Đo được mới <span class="or">chứng minh được</span></span></h2>
     <table class="mtable reveal">
   <thead><tr><th>Metric</th><th>Loại metric</th><th>Ý nghĩa</th><th>Mục tiêu</th></tr></thead>
   <tbody>
@@ -477,7 +476,7 @@
     <tr><td><b>Data quality</b></td><td class="grd">Guardrail</td><td>Mức đầy đủ & chính xác của dữ liệu recruiter nhận được. Đảm bảo rút gọn form không làm hụt dữ liệu sàng lọc.</td><td class="up">Giữ nguyên hoặc tăng</td></tr>
   </tbody>
 </table>
-    <p class="kicker reveal">Guardrail metric đảm bảo việc tăng tốc cho candidate không làm giảm chất lượng dữ liệu của recruiter.</p>
+    <p class="kicker reveal" data-i18n="met_kick">Guardrail metric đảm bảo việc tăng tốc cho candidate không làm giảm chất lượng dữ liệu của recruiter.</p>
   </div>
 </section>
 
@@ -487,8 +486,8 @@
     <div class="twist reveal">
       <div class="ring r1"></div><div class="ring r2"></div>
       <span class="eyebrow gold">Validation · 2025</span>
-      <h3>Workday ký kết <span class="gd">thỏa thuận mua lại Paradox.</span></h3>
-<p>Đầu năm 2025, Workday <b style="color:#fff">thông báo mua lại Paradox</b>, một AI agent chuyên <b style="color:#fff">tối ưu trải nghiệm ứng viên</b> xuyên suốt quá trình ứng tuyển. Sau hơn một thập kỷ duy trì status quo, candidate experience lần đầu được Workday xếp vào ưu tiên chiến lược và rót vốn đầu tư.</p>
+      <h3 data-i18n="val_h3">Workday ký kết <span class="gd">thỏa thuận mua lại Paradox.</span></h3>
+<p data-i18n="val_p">Đầu năm 2025, Workday <b style="color:#fff">thông báo mua lại Paradox</b>, một AI agent chuyên <b style="color:#fff">tối ưu trải nghiệm ứng viên</b> xuyên suốt quá trình ứng tuyển. Sau hơn một thập kỷ duy trì status quo, candidate experience lần đầu được Workday xếp vào ưu tiên chiến lược và rót vốn đầu tư.</p>
 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px;position:relative;z-index:2">
   <div style="background:#fff;border-radius:14px;padding:18px 20px">
     <div style="font-family:var(--disp);font-size:clamp(28px,4vw,40px);color:var(--flame-d);line-height:1">+70%</div>
@@ -503,7 +502,7 @@
     <div style="font-size:13px;color:var(--ink-soft);margin-top:6px;line-height:1.4">cuộc hội thoại ứng viên có AI hỗ trợ</div>
   </div>
 </div>
-<p style="font-family:var(--mono);font-size:10.5px;color:#8893B5;margin-top:14px;position:relative;z-index:2">Nguồn: Paradox / Workday.</p><div class="q">→ Các chỉ số Paradox công bố xác nhận hướng phân tích: giảm friction cho ứng viên là đòn bẩy tăng trưởng, không phải chi phí.</div>
+<p style="font-family:var(--mono);font-size:10.5px;color:#8893B5;margin-top:14px;position:relative;z-index:2">Nguồn: Paradox / Workday.</p><div class="q" data-i18n="val_q">→ Các chỉ số Paradox công bố xác nhận hướng phân tích: giảm friction cho ứng viên là đòn bẩy tăng trưởng, không phải chi phí.</div>
     </div>
   </div>
 </section>
@@ -512,17 +511,17 @@
 <section id="takeaways" class="bg-mist">
   <div class="wrap">
     <span class="eyebrow reveal">06 · Takeaways</span>
-    <h2 class="sec reveal"><span class="dot"></span><span>Vai trò PM: biến pain points thành <span class="or">business case</span></span></h2>
+    <h2 class="sec reveal"><span class="dot"></span><span data-i18n="take_h2">Vai trò PM: biến pain points thành <span class="or">business case</span></span></h2>
     <div class="two">
       <div class="reveal">
-        <p class="lead">Một vấn đề UX trở thành vấn đề kinh doanh: friction bào mòn funnel, đẩy cost-per-hire, tác động không tốt đến Employer Branding. Giải pháp tái định khung candidate experience như đòn bẩy tăng trưởng cho chính bên trả tiền là doanh nghiệp.</p>
+        <p class="lead" data-i18n="take_lead">Một vấn đề UX trở thành vấn đề kinh doanh: friction bào mòn funnel, đẩy cost-per-hire, tác động không tốt đến Employer Branding. Giải pháp tái định khung candidate experience như đòn bẩy tăng trưởng cho chính bên trả tiền là doanh nghiệp.</p>
       </div>
       <div class="reveal">
         <div style="display:flex;flex-direction:column;gap:18px">
-          <div class="takeaway"><h4>Ship gì trước</h4><p>Ưu tiên theo Impact/Effort: S3 (account cuối flow) và S5 (wizard) có effort thấp nhưng tác động trực tiếp lên completion rate. Ship trước để kiểm chứng giả thuyết với chi phí và rủi ro tối thiểu. Khi completion rate cải thiện, dùng số liệu đó làm cơ sở mở ngân sách cho S1 (profile + API) khoản đầu tư nền tảng, effort cao.
+          <div class="takeaway"><h4 data-i18n="take_ship_h">Ship gì trước</h4><p data-i18n="take_ship">Ưu tiên theo Impact/Effort: S3 (account cuối flow) và S5 (wizard) có effort thấp nhưng tác động trực tiếp lên completion rate. Ship trước để kiểm chứng giả thuyết với chi phí và rủi ro tối thiểu. Khi completion rate cải thiện, dùng số liệu đó làm cơ sở mở ngân sách cho S1 (profile + API) khoản đầu tư nền tảng, effort cao.
 
 </p></div>
-          <div class="takeaway"><h4>Ràng buộc</h4><p>Ở quy mô 11.000+ tổ chức, mọi thay đổi đều kéo theo chi phí thật: bảo mật dữ liệu ứng viên, migration hệ thống cũ, bảo trì dài hạn. Giá trị cho người dùng chỉ ship được khi vượt qua bài toán chi phí và rủi ro — vì thế lộ trình ưu tiên cái rẻ, ít rủi ro trước.</p></div>
+          <div class="takeaway"><h4 data-i18n="take_con_h">Ràng buộc</h4><p data-i18n="take_con">Ở quy mô 11.000+ tổ chức, mọi thay đổi đều kéo theo chi phí thật: bảo mật dữ liệu ứng viên, migration hệ thống cũ, bảo trì dài hạn. Giá trị cho người dùng chỉ ship được khi vượt qua bài toán chi phí và rủi ro — vì thế lộ trình ưu tiên cái rẻ, ít rủi ro trước.</p></div>
         </div>
       </div>
     </div>
@@ -541,8 +540,207 @@
 </div></div></footer>
 
 <script>
-  const nav = document.getElementById('nav');
-  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 20));
+/* ---------- i18n: EN default, toggle VI ---------- */
+(function(){
+  // Map: Vietnamese (as written in HTML) -> English. Exact text-content match.
+  var VI2EN = {
+    // rail
+    "Bối cảnh":"Context","Ưu tiên":"Prioritization","Kết luận":"Takeaways",
+    // hero
+    "Phân tích luồng ứng tuyển của Workday: vì sao ATS phổ biến nhất Fortune 500 lại có drop-off cao nhất, và hướng redesign đặt candidate làm trung tâm.":
+      "An analysis of Workday's application flow: why the most-used ATS in the Fortune 500 has the highest drop-off, and a candidate-first redesign direction.",
+    "…và đây mới là bước 1 / 5.":"…and this is only step 1 of 5.",
+    'lượt click "Apply" nhưng không hoàn thành đơn ứng tuyển':'clicked "Apply" but never completed the application',
+    "thời gian trung bình để nộp 1 đơn ứng tuyển":"average time to submit one application",
+    "Fortune 500 chạy trên Workday":"of the Fortune 500 run on Workday",
+    "Nguồn: Appcast":"Source: Appcast","Candidate phản ánh":"Candidate-reported","Workday FY26 filings":"Workday FY26 filings",
+    // context
+    "Context":"Context",
+    "= một rào cản ứng tuyển":"= an application barrier",
+    "account riêng":"separate account",
+    "Mỗi account buộc ứng viên nhập lại toàn bộ thông tin vốn đã có sẵn trong resume.":
+      "Each account forces the candidate to re-enter all the information already in their resume.",
+    "Pain point rõ ràng nhưng iteration bằng 0":"A clear pain point with zero iteration",
+    "chính là tín hiệu product đáng phân tích.":"is exactly the product signal worth analyzing.",
+    '"Hàng trăm tài khoản Workday phải tạo chỉ để apply việc."':'"Hundreds of Workday accounts I had to create just to apply for jobs."',
+    '"Thấy Workday là đóng tab. Không đáng thời gian."':'"I see Workday, I close the tab. Not worth the time."',
+    "Một trong những công cụ tệ nhất từng dùng. Hệ thống không lưu lại thông tin đã nhập.":
+      "One of the worst tools I've used. The system never remembers the info you entered.",
+    "* Trích dẫn dịch &amp; rút gọn từ thread công khai trên Quora &amp; Reddit.":
+      "* Quotes paraphrased & condensed from public Quora & Reddit threads.",
+    // problem
+    "không phải candidate time":"not candidate time",
+    "không hoàn thành đơn":"never completed",
+    "Account mới cho từng công ty, trước cả khi apply":"A new account per company, before you can even apply",
+    "Autofill nhận sai Address / Experience → nhập tay":"Autofill mis-reads Address / Experience → manual entry",
+    "Form dài, mobile thiếu combobox":"Long forms, no combobox on mobile",
+    "Cần data đầy đủ, có cấu trúc để sàng lọc":"Needs complete, structured data to screen",
+    "Cần giảm drop-off, nhưng chính thiết kế lại tạo ra nó":"Wants less drop-off, yet the design causes it",
+    "Cần employer brand &amp; tích hợp ATS stack":"Needs employer brand & ATS-stack integration",
+    "Tất cả đều đã có trong resume vừa upload.":"All of this is already in the resume just uploaded.",
+    // why
+    "Vì sao luồng apply nhiều friction?":"Why is the apply flow so full of friction?",
+    "Admin-first: thu tối đa data, account trước mọi thứ.":"Admin-first: collect max data, account before anything.",
+    "Vì sao admin-first dù candidate ghét?":"Why admin-first if candidates hate it?",
+    "Khách trả tiền là HR/doanh nghiệp, không phải candidate.":"The paying customer is HR / the enterprise, not the candidate.",
+    "Vì sao pain point không lên roadmap?":"Why doesn't the pain point reach the roadmap?",
+    "Candidate không trả tiền &amp; không churn được. Hợp đồng 6 con số.":"Candidates don't pay & can't churn. Contracts run six figures.",
+    '"tẩy chay"':'"boycott"',
+    "65% Fortune 500 dùng Workday, nên từ chối ứng tuyển đồng nghĩa ứng viên tự mất cơ hội tốt nhất.":
+      "65% of the Fortune 500 use Workday, so refusing to apply means candidates lose the best opportunities themselves.",
+    "Vì sao mọi thứ không thay đổi?":"Why does nothing change?",
+    "Lock-in + switching cost ở 11.000+ tổ chức: rủi ro bảo mật, versioning, hiệu năng.":
+      "Lock-in + switching cost across 11,000+ orgs: security, versioning, performance risks.",
+    "vấn đề business-model khoác áo UX.":"a business-model problem dressed as UX.",
+    "Cải thiện User Experience chỉ lên roadmap khi nó gắn được với một business outcome đo lường được.":
+      "UX improvements only reach the roadmap when tied to a measurable business outcome.",
+    // impact
+    "rút cạn":"drains the","ảnh hưởng":"hurts",
+    "Friction trong luồng apply khiến phần lớn ứng viên rời đi trước bước đánh giá của recruiter.":
+      "Friction in the apply flow makes most candidates leave before the recruiter ever evaluates them.",
+    'Click "Apply"':'Click "Apply"',"Bắt đầu form":"Started form","Chạm account / form dài":"Hit account / long form","Hoàn thành":"Completed",
+    "Funnel minh họa, neo theo 92% drop-off (Appcast).":"Illustrative funnel, anchored to the 92% drop-off (Appcast).",
+    "60% candidate báo cáo trải nghiệm apply tiêu cực, phần lớn lan truyền tới người khác dẫn đến rủi ro trực tiếp cho employer branding.":
+      "60% of candidates report a negative apply experience and most share it, creating a direct risk to employer branding.",
+    "Mất nhân tài":"Talent loss",
+    "Drop-off lệch về nhóm ứng viên chất lượng cao, vốn có nhiều lựa chọn nên ngưỡng chịu friction thấp nhất.":
+      "Drop-off skews toward high-quality candidates, who have more options and the lowest tolerance for friction.",
+    "Chi phí tăng":"Rising cost",
+    "Top-of-funnel thấp → cost-per-hire cao, time-to-fill dài.":"Lower top-of-funnel → higher cost-per-hire, longer time-to-fill.",
+    // solution
+    "đòn bẩy tăng trưởng":"a growth lever",
+    "Mỗi giải pháp vừa giảm drop-off, vừa giữ chất lượng data của recruiter, đó là điều kiện để fix sống sót qua business case.":
+      "Each solution lowers drop-off while preserving recruiter data quality — the condition for any fix to survive the business case.",
+    "Profile trung tâm + API":"Central profile + API",
+    "Một profile, chia sẻ theo từng công ty. Recruiter vẫn nhận data có cấu trúc.":
+      "One profile, shared per company. Recruiters still receive structured data.",
+    "Autofill thật sự":"Real autofill",
+    "Parse resume / LinkedIn một lần. Chỉ hỏi cái còn thiếu.":"Parse resume / LinkedIn once. Only ask for what's missing.",
+    "Account ở cuối flow":"Account at the end",
+    "Apply trước, đăng ký sau qua Google / LinkedIn / Apple.":"Apply first, register later via Google / LinkedIn / Apple.",
+    "Input mobile thật, progress bar điều hướng được.":"Real mobile inputs, a navigable progress bar.",
+    "Wizard + email":"Wizard + email",
+    "Chia form thành bước nhỏ; email xác nhận khi nộp.":"Split the form into small steps; confirmation email on submit.",
+    "S3 + S5 trước (rẻ, vá rò rỉ lớn nhất) → S4 → đầu tư S2 → S1 như nền tảng.":
+      "S3 + S5 first (cheap, plug the biggest leak) → S4 → invest in S2 → S1 as the platform.",
+    // prioritization
+    "bắt đầu từ đâu":"where to start",
+    "Impact = mức giảm drop-off. Effort tính cả độ khó ở scale doanh nghiệp.":
+      "Impact = drop-off reduction. Effort includes the difficulty at enterprise scale.",
+    "S3 · Account cuối flow":"S3 · Account at end","S5 · Wizard + email":"S5 · Wizard + email","S4 · Mobile-first":"S4 · Mobile-first","S2 · Autofill":"S2 · Autofill","S1 · Profile + API":"S1 · Profile + API",
+    "Làm trước":"Do first","Lên lịch tiếp":"Schedule next","Big bet: chia phase":"Big bet: phase it","Chiến lược, dài hạn":"Strategic, long-term",
+    // metrics
+    "chứng minh được":"can be proven",
+    "Loại metric":"Metric type","Ý nghĩa":"Meaning","Mục tiêu":"Target",
+    "Tỷ lệ hoàn thành đơn trên tổng số bắt đầu. Thước đo trực tiếp cho mục tiêu giảm drop-off.":
+      "Share of started applications that complete. Direct measure of the drop-off goal.",
+    "Tăng từ ~8% lên hai chữ số":"Up from ~8% to double digits",
+    "Thời gian trung bình để hoàn thành một đơn. Proxy phản ánh mức độ friction của luồng.":
+      "Average time to complete one application. Proxy for flow friction.",
+    "Giảm từ 20–30′ xuống dưới 10′":"Down from 20–30′ to under 10′",
+    "Tỷ lệ rời bỏ ở từng bước (account, form, review). Định vị bước rò rỉ nặng nhất.":
+      "Drop-off per step (account, form, review). Pinpoints the worst leak.",
+    "Giảm mạnh ở bước Create Account":"Sharp drop at the Create Account step",
+    "Mức độ ứng viên sẵn sàng giới thiệu trải nghiệm. Nối friction của luồng với employer brand.":
+      "How likely candidates are to recommend the experience. Links flow friction to employer brand.",
+    "Tăng so với baseline":"Up vs baseline",
+    "Mức đầy đủ & chính xác của dữ liệu recruiter nhận được. Đảm bảo rút gọn form không làm hụt dữ liệu sàng lọc.":
+      "Completeness & accuracy of the data recruiters receive. Ensures a shorter form doesn't cut screening data.",
+    "Giữ nguyên hoặc tăng":"Hold or increase",
+    "Guardrail metric đảm bảo việc tăng tốc cho candidate không làm giảm chất lượng dữ liệu của recruiter.":
+      "The guardrail metric ensures that speeding things up for candidates doesn't degrade recruiter data quality.",
+    // validation
+    "thỏa thuận mua lại Paradox.":"an agreement to acquire Paradox.",
+    "conversion rate sau khi giảm friction":"conversion rate after reducing friction",
+    "time-to-hire, rút ngắn rõ rệt":"time-to-hire, sharply reduced",
+    "cuộc hội thoại ứng viên có AI hỗ trợ":"AI-assisted candidate conversations",
+    "Nguồn: Paradox / Workday.":"Source: Paradox / Workday.",
+    // takeaways
+    "Ship gì trước":"What to ship first","Ràng buộc":"Constraints",
+    // footer
+    "Self-initiated case study · 2026":"Self-initiated case study · 2026",
+  };
+
+  // Rich-HTML nodes (contain inner markup) keyed by data-i18n
+  var RICH = {
+    "hero_h1": {
+      vi: 'Job application flow khiến <span class="or" style="color:#ff5722">hơn 60%</span> ứng viên rời đi.',
+      en: 'A job application flow that pushes <span class="or" style="color:#ff5722">over 60%</span> of candidates away.'
+    }
+  };
+  // Headings / paragraphs with inline markup — match by a stable key via data-i18n added below
+  var RICH2 = {
+    "ctx_h2":  { vi:'Một <span class="or">URL Workday</span> = một rào cản ứng tuyển', en:'A <span class="or">Workday URL</span> = an application barrier' },
+    "ctx_lead":{ vi:'Mỗi công ty là một <b style="color:var(--ink)">account riêng</b>. Mỗi account buộc ứng viên nhập lại toàn bộ thông tin vốn đã có sẵn trong resume.', en:'Each company means a <b style="color:var(--ink)">separate account</b>. Each account forces the candidate to re-enter all the information already in their resume.' },
+    "ctx_p2":  { vi:'Phản hồi tiêu cực kéo dài nhiều năm trên Quora &amp; Reddit, nhưng luồng gần như không đổi. <b style="color:var(--ink)">Pain point rõ ràng nhưng iteration bằng 0</b> chính là tín hiệu product đáng phân tích.', en:'Years of negative feedback on Quora &amp; Reddit, yet the flow barely changed. <b style="color:var(--ink)">A clear pain point with zero iteration</b> is exactly the product signal worth analyzing.' },
+    "prob_h2": { vi:'Tối ưu cho <span class="or">recruiter data</span>, không phải candidate time', en:'Optimized for <span class="or">recruiter data</span>, not candidate time' },
+    "prob_lead":{ vi:'Là một <span class="hl-b">ATS</span>, Workday tối ưu việc thu data sạch cho HR. Nhưng candidate và recruiter đều là user, và thiết kế hiện tại bắt candidate gánh chi phí cho mục tiêu của recruiter.', en:'As an <span class="hl-b">ATS</span>, Workday optimizes for clean data for HR. But candidates and recruiters are both users, and the current design makes candidates bear the cost of the recruiter\'s goal.' },
+    "prob_kick":{ vi:'Bước <b>[Create Account]</b> là điểm rò rỉ lớn nhất của funnel: phần lớn ứng viên bỏ ngang ngay tại đây.', en:'The <b>[Create Account]</b> step is the funnel\'s biggest leak: most candidates drop off right here.' },
+    "why_h2":  { vi:'Phàn nàn cả thập kỷ, <span class="or">vì sao không sửa?</span>', en:'Complaints for a decade — <span class="or">why isn\'t it fixed?</span>' },
+    "why_kick":{ vi:'Kết luận: <b>vấn đề business-model khoác áo UX.</b> Cải thiện User Experience chỉ lên roadmap khi nó gắn được với một business outcome đo lường được.', en:'Conclusion: <b>a business-model problem dressed as UX.</b> UX improvements only reach the roadmap when tied to a measurable business outcome.' },
+    "imp_h2":  { vi:'<span style="color:var(--flame-d)">Friction</span> rút cạn <span style="color:var(--flame-d)">funnel</span>, ảnh hưởng <span style="color:var(--flame-d)">Employer Branding</span>', en:'<span style="color:var(--flame-d)">Friction</span> drains the <span style="color:var(--flame-d)">funnel</span> and hurts <span style="color:var(--flame-d)">employer branding</span>' },
+    "imp_lead":{ vi:'Friction trong luồng apply khiến phần lớn ứng viên rời đi trước bước đánh giá của recruiter.', en:'Friction in the apply flow makes most candidates leave before the recruiter ever evaluates them.' },
+    "sol_h2":  { vi:'Candidate experience như <span class="or">đòn bẩy tăng trưởng</span>', en:'Candidate experience as <span class="or">a growth lever</span>' },
+    "sol_lead":{ vi:'Mỗi giải pháp vừa giảm drop-off, vừa giữ chất lượng data của recruiter, đó là điều kiện để fix sống sót qua business case.', en:'Each solution lowers drop-off while preserving recruiter data quality — the condition for any fix to survive the business case.' },
+    "pri_h2":  { vi:'Impact vs Effort: <span class="or">bắt đầu từ đâu</span>', en:'Impact vs Effort: <span class="or">where to start</span>' },
+    "pri_lead":{ vi:'Impact = mức giảm drop-off. Effort tính cả độ khó ở scale doanh nghiệp.', en:'Impact = drop-off reduction. Effort includes the difficulty at enterprise scale.' },
+    "met_h2":  { vi:'Đo được mới <span class="or">chứng minh được</span>', en:'If you can measure it, <span class="or">you can prove it</span>' },
+    "met_kick":{ vi:'Guardrail metric đảm bảo việc tăng tốc cho candidate không làm giảm chất lượng dữ liệu của recruiter.', en:'The guardrail metric ensures that speeding things up for candidates doesn\'t degrade recruiter data quality.' },
+    "val_h3":  { vi:'Workday ký kết <span class="gd">thỏa thuận mua lại Paradox.</span>', en:'Workday signs <span class="gd">an agreement to acquire Paradox.</span>' },
+    "val_p":   { vi:'Đầu năm 2025, Workday <b style="color:#fff">thông báo mua lại Paradox</b>, một AI agent chuyên <b style="color:#fff">tối ưu trải nghiệm ứng viên</b> xuyên suốt quá trình ứng tuyển. Sau hơn một thập kỷ duy trì status quo, candidate experience lần đầu được Workday xếp vào ưu tiên chiến lược và rót vốn đầu tư.', en:'In early 2025, Workday <b style="color:#fff">announced its acquisition of Paradox</b>, an AI agent focused on <b style="color:#fff">optimizing the candidate experience</b> throughout the application journey. After more than a decade of the status quo, candidate experience was for the first time placed among Workday\'s strategic priorities and funded.' },
+    "val_q":   { vi:'→ Các chỉ số Paradox công bố xác nhận hướng phân tích: giảm friction cho ứng viên là đòn bẩy tăng trưởng, không phải chi phí.', en:'→ Paradox\'s published metrics confirm the thesis: reducing candidate friction is a growth lever, not a cost.' },
+    "take_h2": { vi:'Vai trò PM: biến pain points thành <span class="or">business case</span>', en:'The PM\'s role: turn pain points into a <span class="or">business case</span>' },
+    "take_ship_h": { vi:'Ship gì trước', en:'What to ship first' },
+    "take_con_h":  { vi:'Ràng buộc', en:'Constraints' },
+    "take_lead":{ vi:'Một vấn đề UX trở thành vấn đề kinh doanh: friction bào mòn funnel, đẩy cost-per-hire, tác động không tốt đến Employer Branding. Giải pháp tái định khung candidate experience như đòn bẩy tăng trưởng cho chính bên trả tiền là doanh nghiệp.', en:'A UX problem becomes a business problem: friction erodes the funnel, pushes up cost-per-hire, and harms employer branding. The solution reframes candidate experience as a growth lever for the very party that pays — the enterprise.' },
+    "take_ship":{ vi:'Ưu tiên theo Impact/Effort: S3 (account cuối flow) và S5 (wizard) có effort thấp nhưng tác động trực tiếp lên completion rate. Ship trước để kiểm chứng giả thuyết với chi phí và rủi ro tối thiểu. Khi completion rate cải thiện, dùng số liệu đó làm cơ sở mở ngân sách cho S1 (profile + API) khoản đầu tư nền tảng, effort cao.', en:'Prioritize by Impact/Effort: S3 (account at the end) and S5 (wizard) are low-effort but move completion rate directly. Ship them first to validate the hypothesis at minimal cost and risk. Once completion rate improves, use that data to unlock budget for S1 (profile + API), the high-effort platform investment.' },
+    "take_con":{ vi:'Ở quy mô 11.000+ tổ chức, mọi thay đổi đều kéo theo chi phí thật: bảo mật dữ liệu ứng viên, migration hệ thống cũ, bảo trì dài hạn. Giá trị cho người dùng chỉ ship được khi vượt qua bài toán chi phí và rủi ro — vì thế lộ trình ưu tiên cái rẻ, ít rủi ro trước.', en:'At 11,000+ organizations, every change carries real cost: candidate-data security, legacy migration, long-term maintenance. User value only ships once it clears the cost-and-risk equation — which is why the roadmap prioritizes the cheap, low-risk moves first.' },
+  };
+
+  function setLang(lang){
+    // simple text-node swaps
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var nodes=[], n;
+    while((n=walker.nextNode())) nodes.push(n);
+    nodes.forEach(function(node){
+      var t = node.nodeValue;
+      if(!t) return;
+      var key = t.trim();
+      if(!key) return;
+      if(lang==='en'){
+        if(VI2EN[key] && !VI2EN[key].includes('<')) {
+          if(!node.__vi) node.__vi = t;
+          node.nodeValue = t.replace(key, VI2EN[key]);
+        }
+      } else {
+        if(node.__vi){ node.nodeValue = node.__vi; }
+      }
+    });
+    // rich nodes
+    function applyRich(map){
+      Object.keys(map).forEach(function(k){
+        var el = document.querySelector('[data-i18n="'+k+'"]');
+        if(el){ el.innerHTML = map[k][lang]; }
+      });
+    }
+    applyRich(RICH); applyRich(RICH2);
+    document.documentElement.lang = lang;
+    var btn=document.getElementById('langToggle');
+    btn.classList.toggle('en', lang==='en');
+    btn.classList.toggle('vi', lang==='vi');
+  }
+
+  window.__setLang = setLang;
+  document.addEventListener('DOMContentLoaded', function(){
+    setLang('en'); // default English
+    document.getElementById('langToggle').addEventListener('click', function(){
+      var next = document.documentElement.lang==='en' ? 'vi' : 'en';
+      setLang(next);
+    });
+  });
+})();
+</script>
+<script>
 
   function fillBars(scope){
     scope.querySelectorAll('.fbar .fill').forEach(function(f){ f.style.width = (f.dataset.w || 0) + '%'; });
