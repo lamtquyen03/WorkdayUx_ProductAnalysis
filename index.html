@@ -240,6 +240,18 @@
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 </style>
+
+<!-- Vercel Web Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+<!-- Vercel Speed Insights -->
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
 
@@ -417,7 +429,7 @@
   <div class="wrap">
     <span class="eyebrow reveal">04 · Proposed Solution</span>
     <h2 class="sec reveal"><span class="dot"></span><span data-i18n="sol_h2">Candidate experience như <span class="or">đòn bẩy tăng trưởng</span></span></h2>
-    <p class="lead reveal" style="margin-bottom:30px" data-i18n="sol_lead">Mỗi giải pháp vừa giảm drop-off, vừa giữ chất lượng data của recruiter, đó là điều kiện để fix sống sót qua business case.</p>
+    <p class="lead reveal" style="margin-bottom:30px" data-i18n="sol_lead">Mỗi giải pháp vừa giảm drop-off, vừa giữ chất lượng data của recruiter, đó là điều kiện để fix sống s��t qua business case.</p>
     <div class="solgrid">
       <div class="sol reveal"><div class="top"><span class="ic">🪪</span><span class="n">S1</span></div><h4>Profile trung tâm + API</h4><p>Một profile, chia sẻ theo từng công ty. Recruiter vẫn nhận data có cấu trúc.</p><span class="pat">Single source of truth</span></div>
       <div class="sol reveal"><div class="top"><span class="ic">✨</span><span class="n">S2</span></div><h4>Autofill thật sự</h4><p>Parse resume / LinkedIn một lần. Chỉ hỏi cái còn thiếu.</p><span class="pat">Progressive disclosure</span></div>
@@ -781,7 +793,5 @@
     Object.keys(map).forEach(function(id){ spy.observe(map[id].sec); });
   })();
 </script>
-  <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-<script defer src="/_vercel/insights/script.js"></script>
 </body>
 </html>
